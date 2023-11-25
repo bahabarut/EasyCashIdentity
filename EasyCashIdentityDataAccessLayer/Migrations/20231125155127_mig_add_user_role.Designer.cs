@@ -4,6 +4,7 @@ using EasyCashIdentityDataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyCashIdentityDataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231125155127_mig_add_user_role")]
+    partial class mig_add_user_role
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,9 +150,6 @@ namespace EasyCashIdentityDataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerAccountID"), 1L, 1);
 
-                    b.Property<int>("AppUserID")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("CustomerAccountBalance")
                         .HasColumnType("decimal(18,2)");
 
@@ -167,8 +166,6 @@ namespace EasyCashIdentityDataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerAccountID");
-
-                    b.HasIndex("AppUserID");
 
                     b.ToTable("CustomerAccounts");
                 });
@@ -299,17 +296,6 @@ namespace EasyCashIdentityDataAccessLayer.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EasyCashIdentityEntityLayer.Concrete.CustomerAccount", b =>
-                {
-                    b.HasOne("EasyCashIdentityEntityLayer.Concrete.AppUser", "AppUser")
-                        .WithMany("CustomerAccounts")
-                        .HasForeignKey("AppUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("EasyCashIdentityEntityLayer.Concrete.AppRole", null)
@@ -359,11 +345,6 @@ namespace EasyCashIdentityDataAccessLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EasyCashIdentityEntityLayer.Concrete.AppUser", b =>
-                {
-                    b.Navigation("CustomerAccounts");
                 });
 #pragma warning restore 612, 618
         }
