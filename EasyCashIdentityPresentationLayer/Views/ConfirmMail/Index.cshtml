@@ -1,4 +1,4 @@
-﻿@model AppUserRegisterDTO
+﻿@model ConfirmMailViewModel
 @{
     Layout = null;
 }
@@ -20,34 +20,12 @@
     <h1>Easy Cash Kayıt Formu</h1>
     <div class="w3layoutscontaineragileits">
         <h2>Yeni Kullanıcı</h2>
-        <form method="post" enctype="multipart/form-data">
-            <input type="text" asp-for="name" placeholder="Adınız" required="">
-            <span style="color:#DC4C64;" asp-validation-for="name"></span>
-            <input type="text" asp-for="surname" placeholder="Soyadınız" required="">
-            <span style="color:#DC4C64;" asp-validation-for="surname"></span>
-            <input type="text" asp-for="username" placeholder="Kullanıcı Adınız" required="">
-            <span style="color:#DC4C64;" asp-validation-for="username"></span>
-            <input type="file" style="width: 84%; padding: 15px 10px 15px; background: transparent; border: 2px solid #537b35; margin-bottom: 26px;" asp-for="image" required="">
-            <span style="color:#DC4C64;" asp-validation-for="image"></span>
-            <input type="email" asp-for="email" placeholder="Email" required="">
-            <span style="color:#DC4C64;" asp-validation-for="email"></span>
-            <input type="password" asp-for="password" placeholder="Şifreniz" required="">
-            <span style="color:#DC4C64;" asp-validation-for="password"></span>
-            <input type="password" asp-for="confirmpassword" placeholder="Şifreniz Tekrar Giriniz" required="">
-            <span style="color:#DC4C64;" asp-validation-for="confirmpassword"></span>
-
-            <div class="text-danger" asp-validation-summary="ModelOnly" style="color:#DC4C64;"> <br /></div>
-            <ul class="agileinfotickwthree">
-                <li>
-                    <input type="checkbox" id="brand1" value="">
-                    <label for="brand1"><span></span>Kullanım Şartlarını Okudum</label>
-                    <a href="/Login/SignIn">Bir Hesabınız Var Mı?</a>
-                </li>
-            </ul>
+        <h3>@TempData["registerUserMail"]</h3>
+        <form method="post">
+            <input type="text" asp-for="mail" value="@TempData["registerUserMail"]" readonly>
+            <input type="text" asp-for="confirmCode" placeholder="Mailinize Gelen Kodu Giriniz" required="">
             <div class="aitssendbuttonw3ls">
-                <input type="submit" value="Kayıt Ol">
-                <p> Anasayfaya Git <span>→</span> <a class="w3_play_icon1" href="#small-dialog1"> Easy Cash</a></p>
-                <div class="clear"></div>
+                <input type="submit" value="Hesabı Aktifleştirin">
             </div>
         </form>
     </div>
