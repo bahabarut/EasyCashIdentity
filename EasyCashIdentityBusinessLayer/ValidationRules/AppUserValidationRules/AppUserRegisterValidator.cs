@@ -19,6 +19,7 @@ namespace EasyCashIdentityBusinessLayer.ValidationRules.AppUserValidationRules
             RuleFor(x => x.email).NotEmpty().WithMessage("Bu Alan Boş Geçilemez!");
             RuleFor(x => x.email).EmailAddress().WithMessage("Lütfen Geçerli Bir Mail Adresi Giriniz!");
             RuleFor(x => x.username).NotEmpty().WithMessage("Bu Alan Boş Geçilemez!");
+            RuleFor(x => x.image).NotEmpty().WithMessage("Bu Alan Boş Geçilemez!");
             RuleFor(x => x.password).NotEmpty().WithMessage("Bu Alan Boş Geçilemez!");
             RuleFor(x => x.confirmpassword).NotEmpty().WithMessage("Bu Alan Boş Geçilemez!");
             RuleFor(x => x.confirmpassword).Equal(y=>y.password).WithMessage("Şifreleriniz Eşleşmiyor!");
