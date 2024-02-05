@@ -31,9 +31,8 @@ namespace EasyCashIdentityPresentationLayer.Controllers
                 var user = await _userManager.FindByNameAsync(model.username);
                 if (user.EmailConfirmed == true)
                 {
-
+                    return RedirectToAction("Index", "MyAccount");
                 }
-                return RedirectToAction("Index", "");
             }
             return View();
         }
